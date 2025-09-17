@@ -42,7 +42,7 @@ class BookRepository:
             if value is not None:
                 setattr(db_book, key, value)
                 
-        db_book.updated_at = datetime.utcnow()
+        db_book.updated_at = datetime.now()
         self.session.add(db_book)
         self.session.commit()
         self.session.refresh(db_book)
