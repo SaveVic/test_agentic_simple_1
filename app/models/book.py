@@ -9,4 +9,4 @@ class Book(SQLModel, table=True):
     author: str
     published_year: Optional[int] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)

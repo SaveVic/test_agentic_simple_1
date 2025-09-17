@@ -1,6 +1,7 @@
 from sqlmodel import Session, select
 from app.models.book import Book
 from typing import Optional, List
+from datetime import datetime
 
 
 class BookRepository:
@@ -41,7 +42,7 @@ class BookRepository:
             if value is not None:
                 setattr(db_book, key, value)
                 
-        db_book.updated_at = db_book.__class__.updated_at.default.func()
+        db_book.updated_at = datetime.utcnow()
         self.session.add(db_book)
         self.session.commit()
         self.session.refresh(db_book)
