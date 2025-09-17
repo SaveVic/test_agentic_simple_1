@@ -29,9 +29,11 @@ Create a simple service to manage a collection of "Books".
      - `error`: error object when error happen, optional.
 
 # Technical Requirements
--   **Technology Stack:** Use Python 3.11+, FastAPI, and SQLModel. Use virtual env or create it if not exist.
+-   **Technology Stack:** Use Python 3.13+, FastAPI, and SQLModel. Use virtual env or create it if not exist.
 -   **Database:** Use an SQLite database. The application should create the database and its table on the first run.
 -   **Configuration:** Use a configuration scenario for dev, test, and prod mode.
 -   **Containerization:** Provide a complete `Dockerfile` to build and run the application. The container should expose port 8000.
 -   **Structure:** Use good folder structure and clean code. Separate the functionality as a respositories, services, routes, utils, etc.
 -   **Documentation:** Provide simple documentation on how to install, run, test, etc.
+
+**Do not modify the tests folder, except for conftest.py**. Use it as reference to build the app such that it satisfies all of the test.
