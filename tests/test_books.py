@@ -14,7 +14,9 @@ def test_create_book():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book created successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["title"] == "Test Book"
     assert data["data"]["author"] == "Test Author"
     assert data["data"]["published_year"] == 2023
@@ -28,6 +30,8 @@ def test_create_book_missing_title():
     assert response.status_code == 422
     data = response.json()
     assert data["success"] == False
+    assert data["data"] is None
+    assert data["error"] is not None
 
 
 def test_create_book_missing_author():
@@ -37,6 +41,8 @@ def test_create_book_missing_author():
     assert response.status_code == 422
     data = response.json()
     assert data["success"] == False
+    assert data["data"] is None
+    assert data["error"] is not None
 
 
 def test_create_book_missing_year():
@@ -46,9 +52,18 @@ def test_create_book_missing_year():
     assert response.status_code == 201
     data = response.json()
     assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
 
 
 def test_get_books():
+    # First, delete all existing books to ensure a clean state
+    response = client.get("/books/")
+    if response.status_code == 200:
+        data = response.json()
+        for book in data.get("data", []):
+            client.delete(f"/books/{book['id']}")
+
     # First create a book
     client.post(
         "/books/",
@@ -72,8 +87,10 @@ def test_get_books():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Books retrieved successfully"
-    assert "data" in data
-    assert len(data["data"]) >= 2
+    assert data["data"] is not None
+    assert data["error"] is None
+
+    assert len(data["data"]) == 2
 
 
 def test_get_book_by_id():
@@ -89,9 +106,13 @@ def test_get_book_by_id():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book retrieved successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["id"] == book_id
     assert data["data"]["title"] == "Test Book"
+    assert data["data"]["author"] == "Test Author"
+    assert data["data"]["published_year"] == 2023
 
 
 def test_get_book_by_id_not_found():
@@ -99,6 +120,8 @@ def test_get_book_by_id_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["data"] is None
+    assert data["error"] is not None
 
 
 def test_update_book():
@@ -118,7 +141,9 @@ def test_update_book():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book updated successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["title"] == "Updated Test Book"
     assert data["data"]["author"] == "Updated Author"
     assert data["data"]["published_year"] == 2023  # Should remain unchanged
@@ -141,7 +166,9 @@ def test_update_book_with_title_only():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book updated successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["title"] == "Updated Test Book"
     assert data["data"]["author"] == "Test Author"
     assert data["data"]["published_year"] == 2023  # Should remain unchanged
@@ -164,7 +191,9 @@ def test_update_book_with_author_only():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book updated successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["title"] == "Test Book"
     assert data["data"]["author"] == "Updated Author"
     assert data["data"]["published_year"] == 2023  # Should remain unchanged
@@ -187,7 +216,9 @@ def test_update_book_with_year_only():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book updated successfully"
-    assert "data" in data
+    assert data["data"] is not None
+    assert data["error"] is None
+
     assert data["data"]["title"] == "Test Book"
     assert data["data"]["author"] == "Test Author"
     assert data["data"]["published_year"] == 2099  # Should remain unchanged
@@ -200,6 +231,8 @@ def test_update_book_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["data"] is None
+    assert data["error"] is not None
 
 
 def test_delete_book():
@@ -216,6 +249,8 @@ def test_delete_book():
     data = response.json()
     assert data["success"] == True
     assert data["message"] == "Book deleted successfully"
+    assert data["data"] is None
+    assert data["error"] is None
 
 
 def test_delete_book_not_found():
@@ -223,6 +258,8 @@ def test_delete_book_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["data"] is None
+    assert data["error"] is not None
 
 
 def test_get_books_with_filters():
@@ -259,6 +296,9 @@ def test_get_books_with_filters():
     response = client.get("/books/?title=Gatsby")
     assert response.status_code == 200
     data = response.json()
+    assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
     assert len(data["data"]) == 1
     assert data["data"][0]["title"] == "The Great Gatsby"
 
@@ -266,6 +306,9 @@ def test_get_books_with_filters():
     response = client.get("/books/?author=Orwell")
     assert response.status_code == 200
     data = response.json()
+    assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
     assert len(data["data"]) == 1
     assert data["data"][0]["author"] == "George Orwell"
 
@@ -273,6 +316,9 @@ def test_get_books_with_filters():
     response = client.get("/books/?published_year=1960")
     assert response.status_code == 200
     data = response.json()
+    assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
     assert len(data["data"]) == 1
     assert data["data"][0]["published_year"] == 1960
 
@@ -280,6 +326,18 @@ def test_get_books_with_filters():
     response = client.get("/books/?title=1984&author=George")
     assert response.status_code == 200
     data = response.json()
+    assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
     assert len(data["data"]) == 1
     assert data["data"][0]["title"] == "1984"
     assert data["data"][0]["author"] == "George Orwell"
+
+    # Filter by multiple parameters
+    response = client.get("/books/?title=Missing")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["success"] == True
+    assert data["data"] is not None
+    assert data["error"] is None
+    assert len(data["data"]) == 0

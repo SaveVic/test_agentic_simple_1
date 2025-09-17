@@ -6,25 +6,27 @@ from app.main import app
 from fastapi.testclient import TestClient
 
 
-@pytest.fixture(name="session")
-def session_fixture():
+@pytest.fixture(name="engine")
+def engine_fixture():
     engine = create_engine(
         "sqlite://",  # In-memory SQLite database
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
     SQLModel.metadata.create_all(engine)
+    yield engine
+
+
+@pytest.fixture(name="session")
+def session_fixture(engine):
     with Session(engine) as session:
         yield session
 
 
 @pytest.fixture(name="client")
-def client_fixture():
-    engine = create_engine(
-        "sqlite://",  # In-memory SQLite database
-        connect_args={"check_same_thread": False},
-        poolclass=StaticPool,
-    )
+def client_fixture(engine):
+    # Create a fresh database for each test
+    SQLModel.metadata.drop_all(engine)
     SQLModel.metadata.create_all(engine)
     
     def get_session_override():
