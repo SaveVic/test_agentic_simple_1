@@ -36,4 +36,4 @@ Create a simple service to manage a collection of "Books".
 -   **Structure:** Use good folder structure and clean code. Separate the functionality as a respositories, services, routes, utils, etc.
 -   **Documentation:** Provide simple documentation on how to install, run, test, etc.
 
-**Do not modify the tests folder**. Use it as reference to build the app such that it satisfies all of the test.
+**Do not modify the tests folder, except for conftest.py**. Use it as reference to build the app such that it satisfies all of the test.
