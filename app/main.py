@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
@@ -5,12 +6,16 @@ from app.api.book_routes import router as book_router
 from app.database.database import create_db_and_tables
 from app.schemas.book import ErrorResponse
 
-app = FastAPI(title="Books API", version="1.0.0")
 
-# Create database and tables on startup
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create database and tables on startup
     create_db_and_tables()
+    yield
+    # Cleanup on shutdown (if needed)
+
+
+app = FastAPI(title="Books API", version="1.0.0", lifespan=lifespan)
 
 # Include routers
 app.include_router(book_router)
@@ -19,7 +24,7 @@ app.include_router(book_router)
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,  # Fixed deprecation warning
         content={
             "success": False,
             "message": "Validation error",
