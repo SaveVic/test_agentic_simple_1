@@ -50,10 +50,10 @@ def get_book(
     service = BookService(session)
     book = service.get_book_by_id(book_id)
     if not book:
-        # Return a 404 status code with a proper error response
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Book not found"
+        return ErrorResponse(
+            success=False,
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
     return SuccessResponse(
         success=True,
@@ -71,10 +71,10 @@ def update_book(
     service = BookService(session)
     book = service.update_book(book_id, book_update)
     if not book:
-        # Return a 404 status code with a proper error response
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Book not found"
+        return ErrorResponse(
+            success=False,
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
     return SuccessResponse(
         success=True,
@@ -91,10 +91,10 @@ def delete_book(
     service = BookService(session)
     deleted = service.delete_book(book_id)
     if not deleted:
-        # Return a 404 status code with a proper error response
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Book not found"
+        return ErrorResponse(
+            success=False,
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
     return SuccessResponse(
         success=True,
