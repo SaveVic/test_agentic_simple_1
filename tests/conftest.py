@@ -4,6 +4,8 @@ from sqlmodel.pool import StaticPool
 from app.database.database import get_session
 from app.main import app
 from fastapi.testclient import TestClient
+# Import the Book model to ensure it's registered with SQLModel
+from app.models.book import Book
 
 
 @pytest.fixture(name="engine")

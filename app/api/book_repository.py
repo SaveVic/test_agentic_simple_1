@@ -8,7 +8,7 @@ class BookRepository:
         self.session = session
 
     def create_book(self, book_create: BookCreate) -> Book:
-        db_book = Book.from_orm(book_create)
+        db_book = Book.model_validate(book_create)
         self.session.add(db_book)
         self.session.commit()
         self.session.refresh(db_book)

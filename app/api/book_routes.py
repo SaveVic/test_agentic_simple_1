@@ -14,20 +14,13 @@ def create_book(
     book_create: BookCreate,
     session: Session = Depends(get_session)
 ) -> SuccessResponse:
-    try:
-        service = BookService(session)
-        book = service.create_book(book_create)
-        return SuccessResponse(
-            success=True,
-            message="Book created successfully",
-            data=BookResponse.model_validate(book)
-        )
-    except Exception as e:
-        return ErrorResponse(
-            success=False,
-            message="Failed to create book",
-            error={"detail": str(e)}
-        )
+    service = BookService(session)
+    book = service.create_book(book_create)
+    return SuccessResponse(
+        success=True,
+        message="Book created successfully",
+        data=BookResponse.model_validate(book)
+    )
 
 
 @router.get("/", response_model=SuccessResponse)
@@ -37,22 +30,15 @@ def get_books(
     published_year: Optional[int] = Query(None, description="Filter by published year"),
     session: Session = Depends(get_session)
 ) -> SuccessResponse:
-    try:
-        service = BookService(session)
-        filters = BookFilter(title=title, author=author, published_year=published_year)
-        books = service.get_books(filters)
-        book_responses = [BookResponse.model_validate(book) for book in books]
-        return SuccessResponse(
-            success=True,
-            message="Books retrieved successfully",
-            data=book_responses
-        )
-    except Exception as e:
-        return ErrorResponse(
-            success=False,
-            message="Failed to retrieve books",
-            error={"detail": str(e)}
-        )
+    service = BookService(session)
+    filters = BookFilter(title=title, author=author, published_year=published_year)
+    books = service.get_books(filters)
+    book_responses = [BookResponse.model_validate(book) for book in books]
+    return SuccessResponse(
+        success=True,
+        message="Books retrieved successfully",
+        data=book_responses
+    )
 
 
 @router.get("/{book_id}", response_model=SuccessResponse)
@@ -60,27 +46,19 @@ def get_book(
     book_id: int,
     session: Session = Depends(get_session)
 ) -> SuccessResponse:
-    try:
-        service = BookService(session)
-        book = service.get_book_by_id(book_id)
-        if not book:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Book not found"
-            )
-        return SuccessResponse(
-            success=True,
-            message="Book retrieved successfully",
-            data=BookResponse.model_validate(book)
-        )
-    except HTTPException:
-        raise
-    except Exception as e:
+    service = BookService(session)
+    book = service.get_book_by_id(book_id)
+    if not book:
         return ErrorResponse(
             success=False,
-            message="Failed to retrieve book",
-            error={"detail": str(e)}
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
+    return SuccessResponse(
+        success=True,
+        message="Book retrieved successfully",
+        data=BookResponse.model_validate(book)
+    )
 
 
 @router.put("/{book_id}", response_model=SuccessResponse)
@@ -89,27 +67,19 @@ def update_book(
     book_update: BookUpdate,
     session: Session = Depends(get_session)
 ) -> SuccessResponse:
-    try:
-        service = BookService(session)
-        book = service.update_book(book_id, book_update)
-        if not book:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Book not found"
-            )
-        return SuccessResponse(
-            success=True,
-            message="Book updated successfully",
-            data=BookResponse.model_validate(book)
-        )
-    except HTTPException:
-        raise
-    except Exception as e:
+    service = BookService(session)
+    book = service.update_book(book_id, book_update)
+    if not book:
         return ErrorResponse(
             success=False,
-            message="Failed to update book",
-            error={"detail": str(e)}
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
+    return SuccessResponse(
+        success=True,
+        message="Book updated successfully",
+        data=BookResponse.model_validate(book)
+    )
 
 
 @router.delete("/{book_id}", response_model=SuccessResponse)
@@ -117,24 +87,16 @@ def delete_book(
     book_id: int,
     session: Session = Depends(get_session)
 ) -> SuccessResponse:
-    try:
-        service = BookService(session)
-        deleted = service.delete_book(book_id)
-        if not deleted:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Book not found"
-            )
-        return SuccessResponse(
-            success=True,
-            message="Book deleted successfully",
-            data=None
-        )
-    except HTTPException:
-        raise
-    except Exception as e:
+    service = BookService(session)
+    deleted = service.delete_book(book_id)
+    if not deleted:
         return ErrorResponse(
             success=False,
-            message="Failed to delete book",
-            error={"detail": str(e)}
+            message="Book not found",
+            error={"detail": "Book not found"}
         )
+    return SuccessResponse(
+        success=True,
+        message="Book deleted successfully",
+        data=None
+    )
