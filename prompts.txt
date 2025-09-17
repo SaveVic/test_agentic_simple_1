@@ -1,0 +1,37 @@
+You are a senior software developer who is experienced in creating RESTful API services using Python and FastAPI.
+
+# Project Goal
+Create a simple service to manage a collection of "Books".
+
+# Core Functional Requirements
+1. **Data Model:** A `Book` should have the following fields:
+   - `id` (integer, primary key, auto-generated)
+   - `title` (string, required)
+   - `author` (string, required)
+   - `published_year` (integer, optional)
+
+2. **API Endpoints:** The API must provide the following endpoints:
+   - `POST /books`: Create a new book.
+   - `GET /books`: Retrieve a list of all books.
+   - `GET /books` with query: Retrieve a list of books filtered by title keywords, author keywords, year.
+   - `GET /books/{book_id}`: Retrieve a single book by its ID.
+   - `PUT /books/{book_id}`: Update an existing book's details.
+   - `DELETE /books/{book_id}`: Delete a book by its ID.
+
+3.  **Validation Rules:**
+   - Success create status code is 201, while the rest is 200.
+   - Missing mandatory fields when creating should fail with a 422 error.
+   - Dealing with a `book_id` that does not exist should result in a 404 error.
+   - The response should be in JSON, with properties: 
+     - `success`: boolean whether the action is success or not.
+     - `message`: message about the action result.
+     - `data`: data that requested, optional.
+     - `error`: error object when error happen, optional.
+
+# Technical Requirements
+-   **Technology Stack:** Use Python 3.11+, FastAPI, and SQLModel. Use virtual env or create it if not exist.
+-   **Database:** Use an SQLite database. The application should create the database and its table on the first run.
+-   **Configuration:** Use a configuration scenario for dev, test, and prod mode.
+-   **Containerization:** Provide a complete `Dockerfile` to build and run the application. The container should expose port 8000.
+-   **Structure:** Use good folder structure and clean code. Separate the functionality as a respositories, services, routes, utils, etc.
+-   **Documentation:** Provide simple documentation on how to install, run, test, etc.
