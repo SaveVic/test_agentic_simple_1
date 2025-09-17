@@ -1,6 +1,5 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import ValidationError
 from app.models import Book
 from app.schemas import APIResponse, BookCreate, BookUpdate
 from app.services import BookService
@@ -16,23 +15,12 @@ router = APIRouter()
 def create_book(
     book_create: BookCreate, service: BookService = Depends()
 ) -> APIResponse[Book]:
-    try:
-        book = service.create_book(book_create)
-        return APIResponse(
-            success=True,
-            message="Book created successfully",
-            data=book,
-        )
-    except ValidationError as e:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail={"success": False, "error": {"code": 422, "message": e.errors()}},
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={"success": False, "error": {"code": 500, "message": str(e)}},
-        )
+    book = service.create_book(book_create)
+    return APIResponse(
+        success=True,
+        message="Book created successfully",
+        data=book,
+    )
 
 
 @router.get(
@@ -69,7 +57,7 @@ def get_book_by_id(book_id: int, service: BookService = Depends()) -> APIRespons
         )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}},
+        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
     )
 
 
@@ -90,7 +78,7 @@ def update_book(
         )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}},
+        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
     )
 
 
@@ -104,5 +92,5 @@ def delete_book(book_id: int, service: BookService = Depends()) -> APIResponse:
         return APIResponse(success=True, message="Book deleted successfully", data=None)
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}},
+        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
     )

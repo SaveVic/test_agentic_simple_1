@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.config.database import create_db_and_tables
@@ -13,6 +14,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={"success": False, "error": {"code": 422, "message": exc.errors()}, "data": None},
+    )
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -30,6 +39,7 @@ async def generic_exception_handler(request: Request, exc: Exception):
         content={
             "success": False,
             "error": {"code": 500, "message": "Internal server error"},
+            "data": None,
         },
     )
 
