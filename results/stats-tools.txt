@@ -1,0 +1,22 @@
+╭────────────────────────────────────────────────────────────────────╮
+│                                                                    │
+│  Tool Stats For Nerds                                              │
+│                                                                    │
+│  Tool Name                   Calls   Success Rate   Avg Duration   │
+│  ────────────────────────────────────────────────────────────────  │
+│  list_directory                  1         100.0%            1ms   │
+│  read_many_files                 1         100.0%           44ms   │
+│  read_file                       2         100.0%           46ms   │
+│  run_shell_command              18          66.7%          35.7s   │
+│  write_file                     15         100.0%           7.0s   │
+│  replace                         6         100.0%           3.6s   │
+│                                                                    │
+│  User Decision Summary                                             │
+│  Total Reviewed Suggestions:                                  39   │
+│   » Accepted:                                                 33   │
+│   » Rejected:                                                  6   │
+│   » Modified:                                                  0   │
+│  ────────────────────────────────────────────────────────────────  │
+│   Overall Agreement Rate:                                  84.6%   │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
