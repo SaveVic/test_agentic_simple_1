@@ -1,6 +1,7 @@
 from sqlmodel import SQLModel, create_engine, Session
 from app.config.settings import settings
-from app.models.book import Book  # Import the Book model to ensure it's registered
+# Import the Book model to ensure it's registered with SQLModel
+from app.models.book import Book
 
 # Create the database engine
 engine = create_engine(settings.DATABASE_URL, echo=True)

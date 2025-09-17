@@ -15,6 +15,7 @@ def engine_fixture():
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
+    # Create all tables
     SQLModel.metadata.create_all(engine)
     yield engine
 
