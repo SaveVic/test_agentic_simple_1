@@ -1,5 +1,6 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import ValidationError
 from app.models import Book
 from app.schemas import APIResponse, BookCreate, BookUpdate
 from app.services import BookService
@@ -11,7 +12,6 @@ router = APIRouter()
     "/",
     response_model=APIResponse[Book],
     status_code=status.HTTP_201_CREATED,
-    response_model_exclude_none=True,
 )
 def create_book(
     book_create: BookCreate, service: BookService = Depends()
@@ -23,10 +23,15 @@ def create_book(
             message="Book created successfully",
             data=book,
         )
-    except Exception as e:
+    except ValidationError as e:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail={"success": False, "error": {"code": 422, "message": str(e)}},
+            detail={"success": False, "error": {"code": 422, "message": e.errors()}},
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={"success": False, "error": {"code": 500, "message": str(e)}},
         )
 
 
@@ -34,7 +39,6 @@ def create_book(
     "/",
     response_model=APIResponse[List[Book]],
     status_code=status.HTTP_200_OK,
-    response_model_exclude_none=True,
 )
 def get_all_books(
     title: Optional[str] = None,
@@ -54,7 +58,6 @@ def get_all_books(
     "/{book_id}",
     response_model=APIResponse[Book],
     status_code=status.HTTP_200_OK,
-    response_model_exclude_none=True,
 )
 def get_book_by_id(book_id: int, service: BookService = Depends()) -> APIResponse[Book]:
     book = service.get_book_by_id(book_id)
@@ -74,7 +77,6 @@ def get_book_by_id(book_id: int, service: BookService = Depends()) -> APIRespons
     "/{book_id}",
     response_model=APIResponse[Book],
     status_code=status.HTTP_200_OK,
-    response_model_exclude_none=True,
 )
 def update_book(
     book_id: int, book_update: BookUpdate, service: BookService = Depends()
@@ -96,11 +98,10 @@ def update_book(
     "/{book_id}",
     response_model=APIResponse,
     status_code=status.HTTP_200_OK,
-    response_model_exclude_none=True,
 )
 def delete_book(book_id: int, service: BookService = Depends()) -> APIResponse:
     if service.delete_book(book_id):
-        return APIResponse(success=True, message="Book deleted successfully")
+        return APIResponse(success=True, message="Book deleted successfully", data=None)
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail={"success": False, "error": {"code": 404, "message": "Book not found"}},
