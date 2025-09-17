@@ -30,6 +30,7 @@ def test_create_book_missing_title():
     assert response.status_code == 422
     data = response.json()
     assert data["success"] == False
+    assert data["message"] is not None
     assert data["data"] is None
     assert data["error"] is not None
 
@@ -41,6 +42,7 @@ def test_create_book_missing_author():
     assert response.status_code == 422
     data = response.json()
     assert data["success"] == False
+    assert data["message"] is not None
     assert data["data"] is None
     assert data["error"] is not None
 
@@ -52,6 +54,7 @@ def test_create_book_missing_year():
     assert response.status_code == 201
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
 
@@ -120,6 +123,7 @@ def test_get_book_by_id_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["message"] is not None
     assert data["data"] is None
     assert data["error"] is not None
 
@@ -231,6 +235,7 @@ def test_update_book_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["message"] is not None
     assert data["data"] is None
     assert data["error"] is not None
 
@@ -258,6 +263,7 @@ def test_delete_book_not_found():
     assert response.status_code == 404
     data = response.json()
     assert data["success"] == False
+    assert data["message"] is not None
     assert data["data"] is None
     assert data["error"] is not None
 
@@ -297,6 +303,7 @@ def test_get_books_with_filters():
     assert response.status_code == 200
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
     assert len(data["data"]) == 1
@@ -307,6 +314,7 @@ def test_get_books_with_filters():
     assert response.status_code == 200
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
     assert len(data["data"]) == 1
@@ -317,6 +325,7 @@ def test_get_books_with_filters():
     assert response.status_code == 200
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
     assert len(data["data"]) == 1
@@ -327,17 +336,19 @@ def test_get_books_with_filters():
     assert response.status_code == 200
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
     assert len(data["data"]) == 1
     assert data["data"][0]["title"] == "1984"
     assert data["data"][0]["author"] == "George Orwell"
 
-    # Filter by multiple parameters
+    # Filter by not existing parameters
     response = client.get("/books/?title=Missing")
     assert response.status_code == 200
     data = response.json()
     assert data["success"] == True
+    assert data["message"] is not None
     assert data["data"] is not None
     assert data["error"] is None
     assert len(data["data"]) == 0
