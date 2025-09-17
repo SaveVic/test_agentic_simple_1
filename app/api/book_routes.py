@@ -1,5 +1,6 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi.exceptions import RequestValidationError
 from sqlmodel import Session
 from app.database.database import get_session
 from app.api.book_service import BookService
@@ -49,10 +50,10 @@ def get_book(
     service = BookService(session)
     book = service.get_book_by_id(book_id)
     if not book:
-        return ErrorResponse(
-            success=False,
-            message="Book not found",
-            error={"detail": "Book not found"}
+        # Return a 404 status code with a proper error response
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Book not found"
         )
     return SuccessResponse(
         success=True,
@@ -70,10 +71,10 @@ def update_book(
     service = BookService(session)
     book = service.update_book(book_id, book_update)
     if not book:
-        return ErrorResponse(
-            success=False,
-            message="Book not found",
-            error={"detail": "Book not found"}
+        # Return a 404 status code with a proper error response
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Book not found"
         )
     return SuccessResponse(
         success=True,
@@ -90,10 +91,10 @@ def delete_book(
     service = BookService(session)
     deleted = service.delete_book(book_id)
     if not deleted:
-        return ErrorResponse(
-            success=False,
-            message="Book not found",
-            error={"detail": "Book not found"}
+        # Return a 404 status code with a proper error response
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Book not found"
         )
     return SuccessResponse(
         success=True,
