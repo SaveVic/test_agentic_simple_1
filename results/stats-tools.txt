@@ -1,0 +1,27 @@
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                     │
+│  Session Stats                                                                                      │
+│                                                                                                     │
+│  Interaction Summary                                                                                │
+│  Session ID:                 3aada406-5a46-4614-8a11-fec340e12986                                   │
+│  Tool Calls:                 95 ( ✓ 87 ✖ 8 )                                                       │
+│  Success Rate:               91.6%                                                                  │
+│  User Agreement:             93.4% (61 reviewed)                                                    │
+│  Code Changes:               +643 -149                                                              │
+│                                                                                                     │
+│  Performance                                                                                        │
+│  Wall Time:                  58m 11s                                                                │
+│  Agent Active:               40m                                                                    │
+│    » API Time:               31m 39s (79.1%)                                                        │
+│    » Tool Time:              8m 21s (20.9%)                                                         │
+│                                                                                                     │
+│                                                                                                     │
+│  Model Usage                  Reqs   Input Tokens  Output Tokens                                    │
+│  ───────────────────────────────────────────────────────────────                                    │
+│  qwen3-coder-plus               97     10,335,937         29,791                                    │
+│                                                                                                     │
+│  Savings Highlight: 10,189,987 (98.6%) of input tokens were served from the cache, reducing costs.  │
+│                                                                                                     │
+│  » Tip: For a full token breakdown, run `/stats model`.                                             │
+│                                                                                                     │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────╯
