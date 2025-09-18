@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+book_service.egg-info/
+build/
+dist/
+
+# Test & Linter caches
+.pytest_cache/
+.ruff_cache/
+
+# Logs
+*.log
+
+# Project specific
+prompts.txt
+results/
+tests/
+.qlty/
+*.db

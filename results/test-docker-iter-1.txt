@@ -1,0 +1,1148 @@
+{
+	"id": "5d89b797-4d48-46c2-befb-693aa1e4f3bc",
+	"name": "Simple Book API",
+	"timestamp": "2025-09-18T04:21:03.801Z",
+	"collection_id": "44610801-3d0c6d23-c48c-4196-a330-2174d2110d99",
+	"folder_id": 0,
+	"environment_id": "44610801-3421b1ca-4e75-4f9d-bb70-43f53a541ee1",
+	"totalPass": 80,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-09-18T04:21:00.846Z",
+	"totalFail": 16,
+	"results": [
+		{
+			"id": "afc498f0-bb15-41b5-80a3-9e4613528d9b",
+			"name": "Create Book Tests",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 39,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response has correct structure": true,
+				"Book created successfully": true,
+				"Book data is correct": true,
+				"Save book ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book created successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book data is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Save book ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response has correct structure": true,
+					"Book created successfully": true,
+					"Book data is correct": true,
+					"Save book ID": true
+				}
+			]
+		},
+		{
+			"id": "dee39b17-bddf-4f7f-882e-d91c6760b194",
+			"name": "Get Book by ID",
+			"url": "http://127.0.0.1:8000/books/1",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct book data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct book data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct book data returned": true
+				}
+			]
+		},
+		{
+			"id": "e3ed5d1d-543e-48a4-a639-dbb1dac7a1db",
+			"name": "Update Book Tests",
+			"url": "http://127.0.0.1:8000/books/1",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book updated successfully": true,
+				"Correct book data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book updated successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct book data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book updated successfully": true,
+					"Correct book data returned": true
+				}
+			]
+		},
+		{
+			"id": "2e381896-0180-405a-becb-b5bdf28747e0",
+			"name": "Delete Book Tests",
+			"url": "http://127.0.0.1:8000/books/1",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book deleted successfully": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book deleted successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book deleted successfully": true
+				}
+			]
+		},
+		{
+			"id": "922fae08-3bb5-44e4-a1c6-f9d2c20ae40b",
+			"name": "Create Book Missing Title",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 5,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true
+				}
+			]
+		},
+		{
+			"id": "aa3d32e9-339d-471d-af36-f0df9deb084c",
+			"name": "Create Book Missing Author",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 5,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true
+				}
+			]
+		},
+		{
+			"id": "54b18139-57aa-42d8-bee1-371aae9b5b8a",
+			"name": "Create Book Missing Year",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 22,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response has correct structure": true,
+				"Book created successfully": true,
+				"Book data is correct": true,
+				"Cleanup: Delete created book": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book created successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book data is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cleanup: Delete created book": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response has correct structure": true,
+					"Book created successfully": true,
+					"Book data is correct": true,
+					"Cleanup: Delete created book": true
+				}
+			]
+		},
+		{
+			"id": "1bc7c216-d845-48ea-b3fb-af2ebb0be4bc",
+			"name": "Create Book Invalid Type",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 5,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true
+				}
+			]
+		},
+		{
+			"id": "cb8b49f7-f130-46a1-8cb8-62b7d5461f3c",
+			"name": "Get Book by ID Not Found",
+			"url": "http://127.0.0.1:8000/books/9999",
+			"time": 7,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response has correct structure": false,
+				"Book retrieved failed": false
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book retrieved failed": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response has correct structure": false,
+					"Book retrieved failed": false
+				}
+			]
+		},
+		{
+			"id": "bb446ef6-b80b-4d74-a6d9-e1eafd7cd973",
+			"name": "Get Book by Invalid ID",
+			"url": "http://127.0.0.1:8000/books/id",
+			"time": 6,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true
+				}
+			]
+		},
+		{
+			"id": "ac524ea9-3584-44e0-88c9-ac7a96bc4dba",
+			"name": "Get All Books",
+			"url": "http://127.0.0.1:8000/books",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Prepare": true,
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Prepare": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Prepare": true,
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "07f5526c-ae7a-4613-b938-464110741aa5",
+			"name": "Get Books with Filter 1",
+			"url": "http://127.0.0.1:8000/books/?title=Gatsby",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "e9c207cf-f568-4b51-ae63-eae05c404b48",
+			"name": "Get Books with Filter 2",
+			"url": "http://127.0.0.1:8000/books/?author=Orwell",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "6fed13af-4a54-4b69-8c72-5d7bea429013",
+			"name": "Get Books with Filter 3",
+			"url": "http://127.0.0.1:8000/books/?published_year=1960",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "367a7467-643a-416d-85ed-3fadcd8ac7a4",
+			"name": "Get Books with Filter 4",
+			"url": "http://127.0.0.1:8000/books/?title=1984&author=George",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "f8fe83ed-ba7c-4f4d-a61c-599b38d5aa69",
+			"name": "Get Books with Filter 5",
+			"url": "http://127.0.0.1:8000/books/?title=Missing",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book retrieved successfully": true,
+				"Correct books data returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct books data returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book retrieved successfully": true,
+					"Correct books data returned": true
+				}
+			]
+		},
+		{
+			"id": "c11b3fbd-fd87-4817-962f-4059e69410e2",
+			"name": "Update Book Missing Title",
+			"url": "http://127.0.0.1:8000/books/4",
+			"time": 36,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Prepare": true,
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book updated successfully": true,
+				"Correct book data returned": true,
+				"Cleanup: Delete created book": true
+			},
+			"testPassFailCounts": {
+				"Prepare": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book updated successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct book data returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cleanup: Delete created book": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Prepare": true,
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book updated successfully": true,
+					"Correct book data returned": true,
+					"Cleanup: Delete created book": true
+				}
+			]
+		},
+		{
+			"id": "f068e541-d881-4e89-9a8f-ebe25bc8749b",
+			"name": "Update Book Missing Author",
+			"url": "http://127.0.0.1:8000/books/4",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Prepare": true,
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book updated successfully": true,
+				"Correct book data returned": true,
+				"Cleanup: Delete created book": true
+			},
+			"testPassFailCounts": {
+				"Prepare": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book updated successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct book data returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cleanup: Delete created book": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Prepare": true,
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book updated successfully": true,
+					"Correct book data returned": true,
+					"Cleanup: Delete created book": true
+				}
+			]
+		},
+		{
+			"id": "2a9093d5-a243-4bec-ad6f-686cd1b65178",
+			"name": "Update Book Missing Year",
+			"url": "http://127.0.0.1:8000/books/4",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Prepare": true,
+				"Status code is 200": true,
+				"Response has correct structure": true,
+				"Book updated successfully": true,
+				"Correct book data returned": true,
+				"Cleanup: Delete created book": true
+			},
+			"testPassFailCounts": {
+				"Prepare": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book updated successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct book data returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cleanup: Delete created book": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Prepare": true,
+					"Status code is 200": true,
+					"Response has correct structure": true,
+					"Book updated successfully": true,
+					"Correct book data returned": true,
+					"Cleanup: Delete created book": true
+				}
+			]
+		},
+		{
+			"id": "4c6f6d8f-74cd-4f1b-af51-a14788ecfb79",
+			"name": "Update Book Invalid Type",
+			"url": "http://127.0.0.1:8000/books/4",
+			"time": 6,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Prepare": true,
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true,
+				"Cleanup: Delete created book": true
+			},
+			"testPassFailCounts": {
+				"Prepare": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cleanup: Delete created book": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Prepare": true,
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true,
+					"Cleanup: Delete created book": true
+				}
+			]
+		},
+		{
+			"id": "2a8407e7-02d1-4306-9ea8-e70b12256998",
+			"name": "Delete Book Not Found",
+			"url": "http://127.0.0.1:8000/books/9999",
+			"time": 9,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response has correct structure": false,
+				"Book retrieved failed": false
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book retrieved failed": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response has correct structure": false,
+					"Book retrieved failed": false
+				}
+			]
+		},
+		{
+			"id": "d4a89ee0-20bf-4198-8aa4-7ac10616c1c8",
+			"name": "Delete Book by Invalid ID",
+			"url": "http://127.0.0.1:8000/books/id",
+			"time": 8,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422": true,
+				"Response has correct structure": false,
+				"Book created failed": false,
+				"Correct error": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has correct structure": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Book created failed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Correct error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 422": true,
+					"Response has correct structure": false,
+					"Book created failed": false,
+					"Correct error": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 302,
+	"collection": {
+		"requests": [
+			{
+				"id": "afc498f0-bb15-41b5-80a3-9e4613528d9b",
+				"method": "POST"
+			},
+			{
+				"id": "dee39b17-bddf-4f7f-882e-d91c6760b194",
+				"method": "GET"
+			},
+			{
+				"id": "e3ed5d1d-543e-48a4-a639-dbb1dac7a1db",
+				"method": "PUT"
+			},
+			{
+				"id": "2e381896-0180-405a-becb-b5bdf28747e0",
+				"method": "DELETE"
+			},
+			{
+				"id": "922fae08-3bb5-44e4-a1c6-f9d2c20ae40b",
+				"method": "POST"
+			},
+			{
+				"id": "aa3d32e9-339d-471d-af36-f0df9deb084c",
+				"method": "POST"
+			},
+			{
+				"id": "54b18139-57aa-42d8-bee1-371aae9b5b8a",
+				"method": "POST"
+			},
+			{
+				"id": "1bc7c216-d845-48ea-b3fb-af2ebb0be4bc",
+				"method": "POST"
+			},
+			{
+				"id": "cb8b49f7-f130-46a1-8cb8-62b7d5461f3c",
+				"method": "GET"
+			},
+			{
+				"id": "bb446ef6-b80b-4d74-a6d9-e1eafd7cd973",
+				"method": "GET"
+			},
+			{
+				"id": "ac524ea9-3584-44e0-88c9-ac7a96bc4dba",
+				"method": "GET"
+			},
+			{
+				"id": "07f5526c-ae7a-4613-b938-464110741aa5",
+				"method": "GET"
+			},
+			{
+				"id": "e9c207cf-f568-4b51-ae63-eae05c404b48",
+				"method": "GET"
+			},
+			{
+				"id": "6fed13af-4a54-4b69-8c72-5d7bea429013",
+				"method": "GET"
+			},
+			{
+				"id": "367a7467-643a-416d-85ed-3fadcd8ac7a4",
+				"method": "GET"
+			},
+			{
+				"id": "f8fe83ed-ba7c-4f4d-a61c-599b38d5aa69",
+				"method": "GET"
+			},
+			{
+				"id": "c11b3fbd-fd87-4817-962f-4059e69410e2",
+				"method": "PUT"
+			},
+			{
+				"id": "f068e541-d881-4e89-9a8f-ebe25bc8749b",
+				"method": "PUT"
+			},
+			{
+				"id": "2a9093d5-a243-4bec-ad6f-686cd1b65178",
+				"method": "PUT"
+			},
+			{
+				"id": "4c6f6d8f-74cd-4f1b-af51-a14788ecfb79",
+				"method": "PUT"
+			},
+			{
+				"id": "2a8407e7-02d1-4306-9ea8-e70b12256998",
+				"method": "DELETE"
+			},
+			{
+				"id": "d4a89ee0-20bf-4198-8aa4-7ac10616c1c8",
+				"method": "DELETE"
+			}
+		]
+	}
+}
