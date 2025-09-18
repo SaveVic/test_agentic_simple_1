@@ -1,0 +1,27 @@
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  Agent powering down. Goodbye!                                                                                                    │
+│                                                                                                                                   │
+│  Interaction Summary                                                                                                              │
+│  Session ID:                 8cc08212-9d1a-4e7a-a565-b17fcaaeaea9                                                                 │
+│  Tool Calls:                 5 ( ✓ 5 ✖ 0 )                                                                                       │
+│  Success Rate:               100.0%                                                                                               │
+│  User Agreement:             100.0% (1 reviewed)                                                                                  │
+│  Code Changes:               +176 -0                                                                                              │
+│                                                                                                                                   │
+│  Performance                                                                                                                      │
+│  Wall Time:                  12h 19m 40s                                                                                          │
+│  Agent Active:               36.5s                                                                                                │
+│    » API Time:               30.9s (84.9%)                                                                                        │
+│    » Tool Time:              5.5s (15.1%)                                                                                         │
+│                                                                                                                                   │
+│                                                                                                                                   │
+│  Model Usage                  Reqs   Input Tokens  Output Tokens                                                                  │
+│  ───────────────────────────────────────────────────────────────                                                                  │
+│  qwen3-coder-plus                7         93,846          1,169                                                                  │
+│                                                                                                                                   │
+│  Savings Highlight: 69,890 (74.5%) of input tokens were served from the cache, reducing costs.                                    │
+│                                                                                                                                   │
+│  » Tip: For a full token breakdown, run `/stats model`.                                                                           │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
