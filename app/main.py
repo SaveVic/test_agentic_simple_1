@@ -20,7 +20,7 @@ app = FastAPI(lifespan=lifespan)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=422,
-        content={"success": False, "error": {"code": 422, "message": exc.errors()}, "data": None},
+        content={"success": False, "message": "Validation error", "error": {"code": 422, "message": exc.errors()}, "data": None},
     )
 
 
@@ -38,6 +38,7 @@ async def generic_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={
             "success": False,
+            "message": "Internal server error",
             "error": {"code": 500, "message": "Internal server error"},
             "data": None,
         },

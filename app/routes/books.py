@@ -57,7 +57,12 @@ def get_book_by_id(book_id: int, service: BookService = Depends()) -> APIRespons
         )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
+        detail=APIResponse(
+            success=False,
+            message="Book not found",
+            error={"code": 404, "message": "Book not found"},
+            data=None
+        ).model_dump(exclude_none=True),
     )
 
 
@@ -78,7 +83,12 @@ def update_book(
         )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
+        detail=APIResponse(
+            success=False,
+            message="Book not found",
+            error={"code": 404, "message": "Book not found"},
+            data=None
+        ).model_dump(exclude_none=True),
     )
 
 
@@ -92,5 +102,10 @@ def delete_book(book_id: int, service: BookService = Depends()) -> APIResponse:
         return APIResponse(success=True, message="Book deleted successfully", data=None)
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"success": False, "error": {"code": 404, "message": "Book not found"}, "data": None},
+        detail=APIResponse(
+            success=False,
+            message="Book not found",
+            error={"code": 404, "message": "Book not found"},
+            data=None
+        ).model_dump(exclude_none=True),
     )
