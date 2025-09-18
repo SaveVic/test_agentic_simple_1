@@ -1,0 +1,19 @@
+╭────────────────────────────────────────────────────────────────────╮
+│                                                                    │
+│  Tool Stats For Nerds                                              │
+│                                                                    │
+│  Tool Name                   Calls   Success Rate   Avg Duration   │
+│  ────────────────────────────────────────────────────────────────  │
+│  write_file                      1         100.0%          12.5s   │
+│  read_file                      10         100.0%           29ms   │
+│  replace                         6         100.0%           3.2s   │
+│                                                                    │
+│  User Decision Summary                                             │
+│  Total Reviewed Suggestions:                                   7   │
+│   » Accepted:                                                  7   │
+│   » Rejected:                                                  0   │
+│   » Modified:                                                  0   │
+│  ────────────────────────────────────────────────────────────────  │
+│   Overall Agreement Rate:                                 100.0%   │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
