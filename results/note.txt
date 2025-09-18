@@ -1,0 +1,3 @@
+- venv aware            1
+- dockerignore aware    0
+- test db aware         0
