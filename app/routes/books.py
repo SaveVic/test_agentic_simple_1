@@ -62,7 +62,7 @@ def get_book_by_id(book_id: int, service: BookService = Depends()) -> APIRespons
             message="Book not found",
             error={"code": 404, "message": "Book not found"},
             data=None
-        ).model_dump(exclude_none=True),
+        ).model_dump(),
     )
 
 
@@ -88,7 +88,7 @@ def update_book(
             message="Book not found",
             error={"code": 404, "message": "Book not found"},
             data=None
-        ).model_dump(exclude_none=True),
+        ).model_dump(),
     )
 
 
@@ -107,5 +107,5 @@ def delete_book(book_id: int, service: BookService = Depends()) -> APIResponse:
             message="Book not found",
             error={"code": 404, "message": "Book not found"},
             data=None
-        ).model_dump(exclude_none=True),
+        ).model_dump(),
     )
